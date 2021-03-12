@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>MultiUN README</title>
+</head>
+<body>
+
+MultiUN: Multilingual UN Parallel Text  Release v1
+March 20, 2010
+===================================
+
+This corpus was collected from the United Nations Website
+(http://www.ods.un.org/ods/), and then cleaned and converted 
+to XML at Language Technology Lab in DFKI GmbH (LT-DFKI), Germany. 
+The documents were published by UN from 2000 to 2010.
+
+More information can be found at
+	http://www.euromatrixplus.eu
+
+The corpus contains 463,406 XML documents, consisting of around
+300M tokens per language. The documents were extracted from the UN 
+web site by a specially designed crawler. The documents extracted 
+were in MS Word format. They were converted to plain text at LT-DFKI. 
+All documents are encoded in UTF-8 encoding. 
+
+We reserved the most recent documents (ca. 6 months) for testing 
+and comparisons, which is going to be included in the training 
+set in the next update. 
+
+
+Format
+----------------
+
+The sentences in the documents have been split, wrapped with 
+"<s n="i">...</s>" tags, while the paragraph boundaries are 
+reserved with "<p n="j">...</p>" tags, in which i, j are natural
+numbers.
+
+In addition, the documents include the following information:
+-a file ID, which is unique for each individual file,
+-the language with which the document is labeled in the ODS,
+-the publication date of the document,
+-a document symbol, an identifier assigned for a United Nations document.
+
+Each file is named after the abbreviation of its document symbol
+and its language. That is, files of the same document in different 
+languages have file names with the same prefix. For instance, the 
+files named  "S_AGENDA_5874-ru.xml" and "S_AGENDA_5874-en.xml" are 
+Russian and English version of the same document with a document 
+symbol "S/AGENDA/5874" respectively.
+
+
+Plain text extractor
+----------------
+
+You can extract any parallel files with the command
+
+	python ./extract.py L1 L2 L3 ....
+
+where L1, L2 and L3, etc. can be any/all of the 7 languages
+	ar de en es fr ru zh 
+
+The output is stored in the text/ directory. Each file contains
+plain texts extracted from one XML document, one sentence per 
+line. Paragraph boundaries are preserved by empty lines. Parallel
+files have the same file prefix, whereas the suffixes correspond
+to the languages. For example, the following files are Spanish
+and Chinese texts of the same document.
+
+        ./text/es-zh/2009/UNEP_POPS_POPRC5_3_es.snt
+        ./text/es-zh/2009/UNEP_POPS_POPRC5_3_zh.snt
+
+NOTE: To use this corpus for building SMT systems, you want to
+- tokenize words and punctuation (recommended)
+- sentence alignment (required)
+- lowercase the text (recommended)
+- strip empty lines and their correspondences (recommended)
+
+
+Further reading
+----------------
+MultiUN: A Multilingual corpus from United Nation Documents, 
+Andreas Eisele and Yu Chen, LREC 2010
+
+
+Source
+----------------
+The documents included in this corpus are in public domain 
+according to the Administrative Instruction (ST/AI/189/Add.9/Rev.2) 
+from the United Nations. 
+
+http://en.wikisource.org/wiki/Administrative_Instruction_ST/AI/189/Add.9/Rev.2
+
+</body>
+</html>
+
